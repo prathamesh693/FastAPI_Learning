@@ -1,55 +1,60 @@
-# Import Fast API library
+# Import libraries
 from fastapi import FastAPI
 from models import Product
 
-# Create an object of FASTAPI
+# Create an object/instance of FastAPI, which will be our main app
 app = FastAPI()
 
-@app.get("/") # @app.get -- Decorator or End point (i.e. /)
-def greet():
-    return "Hello Prathamesh Jadhav"
+# Define a GET endpoint for the root URL "/"
+@app.get("/")  # Decorator to define HTTP GET method for "/"
+def greet():  # Function that will run when someone accesses "/"
+    return "Hello Prathamesh Jadhav"  # Return a greeting message
 
-### create a list of product
+# Create a list of products with sample data
 products = [
-    Product(id=1,name="phone",description="Budget Phone",price=99,quantity=10),
-    Product(id=2, name="laptop", description="Coding Laptop", price=991, quantity=6)
+    Product(id=1, name="phone", description="Budget Phone", price=99, quantity=10),  # First product
+    Product(id=2, name="laptop", description="Coding Laptop", price=991, quantity=6)  # Second product
 ]
 
-@app.get("/products")
-def get_products():
-    return products
+# Define a GET endpoint to fetch all products
+@app.get("/products")  # Endpoint URL "/products"
+def get_products():  # Function executed when "/products" is accessed
+    return products  # Return the full list of products
 
-# Using parameter to read the only one product
-@app.get("/products/{id}")
-def get_product_by_id(id:int):
+# Define a GET endpoint to fetch a product by its ID
+@app.get("/products/{id}")  # Endpoint with a path parameter "id"
+def get_product_by_id(id: int):  # Function accepts an integer "id"
+    # Loop through all products to find the one with matching ID
     for product in products:
-        if product.id == id:
-            return product
+        if product.id == id:  # Check if product ID matches
+            return product  # Return the matching product
+    # If no product found, return this message
     return "product not found"
 
-# Create a function that can add the product
-# Implementation of post function
-@app.post("/products")
-def add_product(product:Product): #
-    # append or add the product into products list
-    products.append(product)
-    return product
+# Define a POST endpoint to add a new product
+@app.post("/products")  # HTTP POST method for adding new data
+def add_product(product: Product):  # Accept a product object in request body
+    products.append(product)  # Append the new product to the list
+    return product  # Return the added product as confirmation
 
-# Update the product
-@app.put("/products")
-def update_product(id:int, product:Product):
+# Define a PUT endpoint to update an existing product
+@app.put("/products")  # HTTP PUT method for updating data
+def update_product(id: int, product: Product):  # Accept ID and updated product data
+    # Loop through the products to find the one with matching ID
     for i in range(len(products)):
-        if products[i]. id ==id:
-            products[i] = product
-            return "Product added"
-
+        if products[i].id == id:  # Check for matching ID
+            products[i] = product  # Replace the old product with the updated one
+            return "Product added"  # Return success message
+    # If no product with the given ID is found
     return "No product found"
 
-# Delete the product in Product
-@app.delete("/products")
-def delete_product(id:int):
+# Define a DELETE endpoint to remove a product
+@app.delete("/products")  # HTTP DELETE method for deleting data
+def delete_product(id: int):  # Accept ID of product to delete
+    # Loop through the products to find the one with matching ID
     for i in range(len(products)):
-        if products[i].id==id:
-            del products[i]
-            return "Product deleted"
+        if products[i].id == id:  # Check for matching ID
+            del products[i]  # Delete the product from the list
+            return "Product deleted"  # Return success message
+    # If no product with the given ID is found
     return "No product found"
