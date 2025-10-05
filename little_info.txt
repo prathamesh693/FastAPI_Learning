@@ -1,0 +1,61 @@
+Why choose Python for this project ?
+Why choose FastAPI for this project ?
+What is uvicorn and why you choose it ?
+
+##########################
+we have a code but the server is not running ?
+--> Because Python is console based so we have to used web server. i.e. (uvicorn)
+
+how to run the server ?
+--> uvicorn main[main_file]:app[object of FastAPI]
+
+not run server multiple time ?
+-- > uvicorn main:app --reload
+-- the reload it automatically reload the changes in the server without again save & run the server.
+
+What is Rest ?
+--> Representational State Tranfer (Rest) when client ask for data server send current state/data as an response
+
+what/ why the end points ?
+--> when we develop an website for ecommerce but the client as for job so our server can't do this.
+So as a server it has some end points like buy the product, explore the product, payments etc.
+so to build this end point we need API's (Application Programming Interface).
+
+CRUD -- Create, Read, Update, Delete
+http give methods to perform CRUD operations
+-- Get --> Read
+-- Post --> Create
+-- Put --> Update
+-- Delete --> Delete
+
+## pydantic
+--> pydantic is basically data validation & also when we want to convert data from sever side to JSON formate
+    to the client
+
+
+## swagger in FastAPI
+it's an virtual server because of this we don't need postman like React
+
+## SQL Alchemy
+
+## pymysql
+it is a driver for MySQL.
+
+## After this We need to configuration of database and FastAPI
+1. Database connection
+2. Write a Query
+ --> Session - When we connect to database it's a session , a perticular time in that the
+ interaction between developer and database.
+
+# database url
+db_url = "mysql://root:root@localhost:3306/fastapi"
+ mysql -- type of database used
+ root -- name of machine
+ root -- password of machine
+ localhost:3306 -- name of host system
+ fastapi -- name of database
+
+
+
+
+
